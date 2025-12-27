@@ -1,46 +1,35 @@
 class Animal {
   constructor(species) {
+    // Store the species in a "private" backing variable
     this._species = species;
   }
 
-  // Getter for species
+  // Getter to access the species
   get species() {
     return this._species;
   }
 
-  // Method to log the animal's sound
+  // Shared method for all animals
   makeSound() {
     console.log(`The ${this.species} makes a sound`);
   }
 }
 
 class Cat extends Animal {
-  constructor(species) {
-    // Pass species to the parent Animal constructor
-    super(species);
-  }
-
+  // Unique behavior for Cats
   purr() {
     console.log("purr");
   }
 }
 
 class Dog extends Animal {
-  constructor(species) {
-    // Pass species to the parent Animal constructor
-    super(species);
-  }
-
+  // Unique behavior for Dogs
   bark() {
     console.log("woof");
   }
 }
 
-// Example usage to verify:
-const myCat = new Cat("Siamese");
-myCat.makeSound(); // The Siamese makes a sound
-myCat.purr();      // purr
-
-const myDog = new Dog("Golden Retriever");
-myDog.makeSound(); // The Golden Retriever makes a sound
-myDog.bark();      // woof
+// Attach to window so Cypress tests can access them
+window.Animal = Animal;
+window.Cat = Cat;
+window.Dog = Dog;
